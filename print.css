@@ -1,0 +1,108 @@
+/* ==========================================================================
+   KOPY SuratKu — Print & Export PDF Stylesheet (print.css)
+   Kertas A4 Profesional, Bersih Tanpa Elemen Navigasi Aplikasi
+   ========================================================================== */
+
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 0;
+  }
+
+  html, body {
+    background: #ffffff !important;
+    color: #111827 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 210mm !important;
+  }
+
+  /* Sembunyikan seluruh antarmuka aplikasi */
+  .sidebar,
+  .mobile-topbar,
+  .mobile-bottomnav,
+  .page-header,
+  .stepper,
+  .editor-controls-panel,
+  .no-print,
+  .toast-container,
+  .alert-box {
+    display: none !important;
+  }
+
+  .app-shell,
+  .main-content,
+  .page-container,
+  .view-section,
+  .editor-workspace,
+  .a4-viewport {
+    display: block !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    background: #ffffff !important;
+    box-shadow: none !important;
+    border: none !important;
+    overflow: visible !important;
+  }
+
+  /* Tampilkan hanya area dokumen cetak aktif */
+  body.printing-archive-modal .view-section {
+    display: none !important;
+  }
+
+  body.printing-archive-modal #archivePreviewModal {
+    display: block !important;
+    position: static !important;
+    background: #ffffff !important;
+    padding: 0 !important;
+  }
+
+  body.printing-archive-modal #archivePreviewModal .modal-card {
+    border: none !important;
+    box-shadow: none !important;
+    max-width: 100% !important;
+    max-height: none !important;
+  }
+
+  body.printing-archive-modal #archivePreviewModal .modal-header,
+  body.printing-archive-modal #archivePreviewModal .modal-footer {
+    display: none !important;
+  }
+
+  body.printing-archive-modal #archivePreviewModal .modal-body {
+    padding: 0 !important;
+    overflow: visible !important;
+  }
+
+  .a4-sheet,
+  .a4-sheet.mobile-fit {
+    width: 210mm !important;
+    min-height: 297mm !important;
+    box-shadow: none !important;
+    margin: 0 !important;
+    border: none !important;
+    background: #ffffff !important;
+    color: #111827 !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .unfilled-var-highlight {
+    background: transparent !important;
+    color: inherit !important;
+    font-weight: normal !important;
+    padding: 0 !important;
+  }
+
+  .doc-signature-wrap,
+  .kop-surat-box {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  p, .doc-paragraph {
+    orphans: 3;
+    widows: 3;
+  }
+}

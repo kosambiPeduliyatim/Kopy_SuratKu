@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#15803d">
+  <meta name="description" content="KOPY SuratKu — Buat Surat Lebih Mudah, Cepat, dan Praktis. Aplikasi pembuat surat administrasi gratis untuk masyarakat umum, RT/RW, Karang Taruna, Yayasan, Sekolah, dan UMKM.">
+  <title>KOPY SuratKu — Buat Surat Lebih Mudah, Cepat, dan Praktis</title>
+  <link rel="manifest" href="./manifest.json">
+  <link rel="icon" type="image/svg+xml" href="./assets/logo.svg">
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./css/responsive.css">
+  <link rel="stylesheet" href="./css/print.css">
+</head>
+<body>
+  <div class="app-shell">
+    <!-- =====================================================================
+         SIDEBAR NAVIGASI (Tablet & Komputer)
+         ===================================================================== -->
+    <aside class="sidebar no-print" aria-label="Navigasi Utama">
+      <div class="sidebar-brand">
+        <div class="brand-lockup">
+          <div class="brand-icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+              <line x1="16" y1="13" x2="8" y2="13"></line>
+              <line x1="16" y1="17" x2="8" y2="17"></line>
+            </svg>
+          </div>
+          <div>
+            <div class="brand-title">KOPY SuratKu</div>
+            <span class="brand-sub">Produk Digital KOPY</span>
+          </div>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <button type="button" class="nav-item active" data-nav-view="beranda" onclick="KopyNavigation.navigateTo('beranda')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          Beranda
+        </button>
+        <button type="button" class="nav-item" data-nav-view="buat-surat" onclick="KopyNavigation.navigateTo('buat-surat')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+          Buat Surat
+        </button>
+        <button type="button" class="nav-item" data-nav-view="semua-template" onclick="KopyNavigation.navigateTo('semua-template')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+          Semua Template
+        </button>
+        <button type="button" class="nav-item" data-nav-view="organisasi" onclick="KopyNavigation.navigateTo('organisasi')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          Organisasi Saya
+        </button>
+        <button type="button" class="nav-item" data-nav-view="arsip" onclick="KopyNavigation.navigateTo('arsip')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="21 8 21 21 3 21 3 8"/><rect x="1" y="3" width="22" height="5"/><line x1="10" y1="12" x2="14" y2="12"/></svg>
+          Arsip Dokumen
+        </button>
+        <button type="button" class="nav-item" data-nav-view="kop-surat" onclick="KopyNavigation.navigateTo('kop-surat')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          Kop Surat
+        </button>
+        <button type="button" class="nav-item" data-nav-view="pengaturan" onclick="KopyNavigation.navigateTo('pengaturan')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+          Pengaturan
+        </button>
+        <button type="button" class="nav-item" data-nav-view="bantuan" onclick="KopyNavigation.navigateTo('bantuan')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          Bantuan
+        </button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="active-org-pill">
+          <span style="color:var(--text-muted);font-size:0.72rem;">Profil Aktif:</span>
+          <strong id="sidebarActiveOrgName">Memuat...</strong>
+        </div>
+        <button type="button" class="btn btn-outline btn-sm" style="width:100%;" onclick="KopySettings.toggleTheme()">
+          Ganti Mode Terang / Gelap
+        </button>
+      </div>
+    </aside>
+
+    <!-- =====================================================================
+         TOPBAR & BOTTOM NAVIGATION (HP Android)
+         ===================================================================== -->
+    <header class="mobile-topbar no-print">
+      <div class="brand-lockup" onclick="KopyNavigation.navigateTo('beranda')" style="cursor:pointer;">
+        <div class="brand-icon" style="width:34px;height:34px;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.2">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+            <polyline points="14 2 14 8 20 8"></polyline>
+          </svg>
+        </div>
+        <div>
+          <div class="brand-title" style="font-size:1rem;">KOPY SuratKu</div>
+        </div>
+      </div>
+      <div style="display:flex;gap:6px;">
+        <button type="button" class="btn btn-outline btn-sm" style="min-height:36px;padding:4px 10px;" onclick="KopySettings.toggleTheme()" title="Mode Gelap/Terang">
+          Tema
+        </button>
+        <button type="button" class="btn btn-soft btn-sm" style="min-height:36px;padding:4px 10px;" onclick="KopyNavigation.navigateTo('bantuan')">
+          Bantuan
+        </button>
+      </div>
+    </header>
+
+    <nav class="mobile-bottomnav no-print" aria-label="Navigasi Bawah HP">
+      <div class="mobile-bottomnav-grid">
+        <button type="button" class="bottom-nav-btn active" data-nav-view="beranda" onclick="KopyNavigation.navigateTo('beranda')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+          Beranda
+        </button>
+        <button type="button" class="bottom-nav-btn" data-nav-view="buat-surat" onclick="KopyNavigation.navigateTo('buat-surat')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+          Buat Surat
+        </button>
+        <button type="button" class="bottom-nav-btn" data-nav-view="semua-template" onclick="KopyNavigation.navigateTo('semua-template')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+          Template
+        </button>
+        <button type="button" class="bottom-nav-btn" data-nav-view="arsip" onclick="KopyNavigation.navigateTo('arsip')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="21 8 21 21 3 21 3 8"/><rect x="1" y="3" width="22" height="5"/></svg>
+          Arsip
+        </button>
+        <button type="button" class="bottom-nav-btn" onclick="KopyNavigation.openMobileMoreDrawer()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
+          Lainnya
+        </button>
+      </div>
+    </nav>
+
+    <!-- =====================================================================
+         KONTEN UTAMA (8 HALAMAN MODULAR)
+         ===================================================================== -->
+    <main class="main-content">
+      <div class="page-container">
+
+        <!-- 1. BERANDA -->
+        <section id="view-beranda" class="view-section active">
+          <div class="hero-admin-card">
+            <span class="hero-badge">Produk Digital Gratis KOPY (Kosambi Peduli Yatim) — Terbuka untuk Umum</span>
+            <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px;">
+              <img src="./assets/logo.svg" alt="KOPY SuratKu" style="height:46px;background:#ffffff;border-radius:10px;padding:4px 8px;">
+            </div>
+            <p class="tagline">"Buat Surat Lebih Mudah, Cepat, dan Praktis."</p>
+            <div class="btn-group">
+              <button type="button" class="btn btn-white" onclick="KopyNavigation.navigateTo('buat-surat')">
+                + Buat Surat Sekarang
+              </button>
+              <button type="button" class="btn btn-outline" style="background:rgba(255,255,255,0.14);color:#fff;border-color:rgba(255,255,255,0.35);" onclick="KopyNavigation.navigateTo('semua-template')">
+                Lihat Semua Template
+              </button>
+            </div>
+          </div>
+
+          <div id="pwaStatusBanner"></div>
+
+          <!-- Kolom Pencarian Cepat -->
+          <div class="card">
+            <label class="form-label" for="homeQuickSearchInput" style="display:block;margin-bottom:8px;">Cari Template Surat Cepat</label>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;">
+              <div class="search-bar-wrap" style="flex:1;min-width:220px;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                <input type="search" id="homeQuickSearchInput" class="form-control" placeholder="Ketik kata kunci: misal permohonan dana, undangan, domisili, tagihan...">
+              </div>
+              <button type="button" class="btn btn-primary" onclick="KopyNavigation.navigateTo('semua-template'); KopySearch.setQuery(document.getElementById('homeQuickSearchInput').value);">
+                Cari
+              </button>
+            </div>
+          </div>
+
+          <!-- Ringkasan Status -->
+          <div class="stats-grid">
+            <div class="stat-card" style="cursor:pointer;" onclick="KopyNavigation.navigateTo('arsip')">
+              <div class="stat-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg>
+              </div>
+              <div>
+                <div class="stat-label">Dokumen Tersimpan</div>
+                <div class="stat-value" id="homeSavedDocsCount">0</div>
+                <div class="stat-meta">Tersimpan lokal di perangkat Anda</div>
+              </div>
+            </div>
+
+            <div class="stat-card" style="cursor:pointer;" onclick="KopyNavigation.navigateTo('organisasi')">
+              <div class="stat-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+              </div>
+              <div>
+                <div class="stat-label">Organisasi Terakhir Digunakan</div>
+                <div class="stat-value" id="homeActiveOrgName" style="font-size:1.02rem;">Memuat...</div>
+                <div class="stat-meta" id="homeActiveOrgMeta">-</div>
+              </div>
+            </div>
+
+            <div class="stat-card" style="cursor:pointer;" onclick="KopyNavigation.navigateTo('semua-template')">
+              <div class="stat-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+              </div>
+              <div>
+                <div class="stat-label">Koleksi Template Siap Pakai</div>
+                <div class="stat-value" id="homeTemplatesCount">102 Template</div>
+                <div class="stat-meta">6 Kategori + Template Kustom</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Kategori Surat -->
+          <h2 class="section-heading">Kategori Surat Administrasi</h2>
+          <div class="category-grid" id="homeCategoryGrid"></div>
+
+          <!-- Dokumen Terakhir -->
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+            <h2 class="section-heading" style="margin:0;">Dokumen Terakhir</h2>
+            <button type="button" class="btn btn-outline btn-sm" onclick="KopyNavigation.navigateTo('arsip')">Semua Arsip &rarr;</button>
+          </div>
+          <div class="item-list" id="homeRecentDocsList" style="margin-bottom:20px;"></div>
+
+          <!-- Panduan Singkat Penggunaan -->
+          <div class="card">
+            <h2 class="section-heading">Panduan Singkat Penggunaan</h2>
+            <div class="stats-grid" style="margin-bottom:0;">
+              <div>
+                <span class="badge badge-green">Langkah 1</span>
+                <p style="font-weight:700;margin:6px 0 2px;">Atur Profil & Kop Surat</p>
+                <p style="font-size:0.84rem;color:var(--text-secondary);margin:0;">Simpan identitas RT/RW, Karang Taruna, Yayasan, Sekolah, atau UMKM Anda sekali saja.</p>
+              </div>
+              <div>
+                <span class="badge badge-green">Langkah 2</span>
+                <p style="font-weight:700;margin:6px 0 2px;">Pilih Template Surat</p>
+                <p style="font-size:0.84rem;color:var(--text-secondary);margin:0;">Pilih salah satu dari 102 template surat sesuai kebutuhan administrasi Anda.</p>
+              </div>
+              <div>
+                <span class="badge badge-green">Langkah 3</span>
+                <p style="font-weight:700;margin:6px 0 2px;">Isi Formulir & Edit A4</p>
+                <p style="font-size:0.84rem;color:var(--text-secondary);margin:0;">Lengkapi kolom formulir, lalu sesuaikan isi paragraf secara langsung pada kertas A4.</p>
+              </div>
+              <div>
+                <span class="badge badge-green">Langkah 4</span>
+                <p style="font-weight:700;margin:6px 0 2px;">Simpan Arsip & Cetak PDF</p>
+                <p style="font-size:0.84rem;color:var(--text-secondary);margin:0;">Simpan ke arsip lokal dan cetak atau simpan sebagai file PDF langsung dari browser.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="alert-box" style="font-size:0.82rem;margin-bottom:0;">
+            <strong>Privasi & Batasan Hukum:</strong> Seluruh data tersimpan 100% lokal di perangkat Anda tanpa server eksternal. KOPY SuratKu adalah alat bantu penyusunan draf dokumen; dokumen yang memerlukan pengesahan resmi pejabat/instansi tetap wajib diverifikasi dan disahkan oleh pihak berwenang terkait.
+          </div>
+        </section>
+
+        <!-- 2. BUAT SURAT (WORKFLOW 3 LANGKAH) -->
+        <section id="view-buat-surat" class="view-section">
+          <div class="page-header">
+            <div>
+              <h1 class="page-title">Buat Surat Baru</h1>
+              <p class="page-subtitle">Ikuti 3 langkah mudah: Pilih Template &rarr; Isi Formulir &rarr; Preview & Edit Kertas A4.</p>
+            </div>
+          </div>
+
+          <div class="stepper no-print" role="navigation" aria-label="Tahapan Pembuatan Surat">
+            <div class="step-item active" id="stepperItem1">
+              <span class="step-num">1</span> Pilih Template
+            </div>
+            <span class="step-sep">&rsaquo;</span>
+            <div class="step-item" id="stepperItem2">
+              <span class="step-num">2</span> Isi Formulir
+            </div>
+            <span class="step-sep">&rsaquo;</span>
+            <div class="step-item" id="stepperItem3">
+              <span class="step-num">3</span> Editor & Preview A4
+            </div>
+          </div>
+
+          <!-- Step 1 -->
+          <div id="createStepPanel1">
+            <div class="card">
+              <div class="form-grid">
+                <div class="form-group" style="margin-bottom:0;">
+                  <label class="form-label" for="step1SearchInput">Cari Jenis Surat</label>
+                  <input type="search" id="step1SearchInput" class="form-control" placeholder="Ketik nama surat..." oninput="KopyNavigation.renderCreateStep1Catalog()">
+                </div>
+                <div class="form-group" style="margin-bottom:0;">
+                  <label class="form-label" for="step1CatSelect">Filter Kategori</label>
+                  <select id="step1CatSelect" class="form-control" onchange="KopyNavigation.renderCreateStep1Catalog()">
+                    <option value="ALL">Semua Kategori (A – F)</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="template-grid" id="step1TemplateList"></div>
+          </div>
+
+          <!-- Step 2 -->
+          <div id="createStepPanel2" style="display:none;">
+            <div id="dynamicFormContainer"></div>
+          </div>
+
+          <!-- Step 3 -->
+          <div id="createStepPanel3" style="display:none;">
+            <div id="documentEditorContainer"></div>
+          </div>
+        </section>
+
+        <!-- 3. SEMUA TEMPLATE -->
+        <section id="view-semua-template" class="view-section">
+          <div class="page-header">
+            <div>
+              <h1 class="page-title">Semua Template Surat</h1>
+              <p class="page-subtitle">102 template administrasi siap pakai dari 6 kategori ditambah fitur Template Kustom.</p>
+            </div>
+            <button type="button" class="btn btn-primary" onclick="KopyApp.openCustomTemplateModal()">
+              + Buat Template Kustom
+            </button>
+          </div>
+
+          <div class="card">
+            <div class="search-bar-wrap" style="margin-bottom:12px;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              <input type="search" id="catalogSearchInput" class="form-control" placeholder="Cari nama template, kategori, atau kata kunci (contoh: donasi, sktm, penawaran)..." oninput="KopySearch.setQuery(this.value)">
+            </div>
+            <div class="filter-pills" id="templateCategoryPills"></div>
+            <div style="font-size:0.84rem;color:var(--text-muted);" id="templatesResultCount"></div>
+          </div>
+
+          <div id="templateCategoryLegalBanner" class="alert-box alert-warning" style="display:none;"></div>
+          <div class="template-grid" id="templatesCatalogGrid"></div>
+        </section>
+
+        <!-- 4. ORGANISASI SAYA & PENANDATANGAN -->
+        <section id="view-organisasi" class="view-section">
+          <div class="page-header">
+            <div>
+              <h1 class="page-title">Organisasi Saya & Penandatangan</h1>
+              <p class="page-subtitle">Simpan berbagai profil lembaga (RT/RW, Karang Taruna, Yayasan, Sekolah, UMKM) dalam satu perangkat.</p>
+            </div>
+          </div>
+
+          <div class="card" id="orgFormCard">
+            <h2 class="section-heading">Tambah / Edit Profil Organisasi</h2>
+            <form id="organizationForm">
+              <input type="hidden" id="org_id">
+              <div class="form-grid">
+                <div class="form-group">
+                  <label class="form-label" for="org_name">Nama Organisasi / Lembaga<span class="required-mark">*</span></label>
+                  <input type="text" id="org_name" class="form-control" placeholder="Contoh: Karang Taruna Kosambi Barat / RT 002 RW 004" required>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="org_shortCode">Kode Singkatan Organisasi (untuk Nomor Surat)<span class="required-mark">*</span></label>
+                  <input type="text" id="org_shortCode" class="form-control" placeholder="Contoh: KOPY / KT-KB / RT02" required>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="org_city">Kota / Kabupaten (untuk Tanggal Surat)</label>
+                  <input type="text" id="org_city" class="form-control" placeholder="Contoh: Tangerang">
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="org_regNumber">Nomor Identitas / Legalitas Organisasi (Opsional)</label>
+                  <input type="text" id="org_regNumber" class="form-control" placeholder="Contoh: AHU-xxxx / SK Lurah No...">
+                </div>
+                <div class="form-group full-width">
+                  <label class="form-label" for="org_address">Alamat Sekretariat Lengkap</label>
+                  <input type="text" id="org_address" class="form-control" placeholder="Contoh: Jl. Raya Kosambi Barat No. 10, Kec. Kosambi, Kab. Tangerang">
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="org_phone">Nomor Telepon / WhatsApp</label>
+                  <input type="text" id="org_phone" class="form-control" placeholder="Contoh: 0812-3456-7890">
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="org_email">Email Organisasi</label>
+                  <input type="email" id="org_email" class="form-control" placeholder="Contoh: sekretariat@organisasi.id">
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="org_website">Website / Media Sosial</label>
+                  <input type="text" id="org_website" class="form-control" placeholder="Contoh: kopy.or.id">
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="org_logoFile">Logo Organisasi (dari Galeri HP/Komputer)</label>
+                  <input type="file" id="org_logoFile" class="form-control" accept="image/png,image/jpeg,image/webp">
+                  <div id="orgLogoPreviewBox" style="margin-top:6px;"><span class="form-help">Format PNG/JPG/WEBP (maks 3MB, otomatis dikompresi).</span></div>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="org_chairman">Nama Ketua</label>
+                  <input type="text" id="org_chairman" class="form-control" placeholder="Nama Ketua Organisasi">
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="org_secretary">Nama Sekretaris</label>
+                  <input type="text" id="org_secretary" class="form-control" placeholder="Nama Sekretaris">
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="org_treasurer">Nama Bendahara</label>
+                  <input type="text" id="org_treasurer" class="form-control" placeholder="Nama Bendahara">
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="org_defaultSignerTitle">Jabatan Penandatangan Utama</label>
+                  <input type="text" id="org_defaultSignerTitle" class="form-control" placeholder="Contoh: Ketua Umum / Ketua RT 002">
+                </div>
+                <div class="form-group full-width">
+                  <label class="form-label" for="org_boardMembers">Daftar Pengurus Lainnya (Opsional)</label>
+                  <textarea id="org_boardMembers" class="form-control" rows="2" placeholder="Catatan struktur pengurus lengkap..."></textarea>
+                </div>
+              </div>
+              <div class="btn-group">
+                <button type="submit" class="btn btn-primary">Simpan Profil Organisasi</button>
+                <button type="button" class="btn btn-outline" onclick="KopyApp.resetOrgForm()">Reset Form</button>
+              </div>
+            </form>
+          </div>
+
+          <h2 class="section-heading">Daftar Profil Organisasi Tersimpan</h2>
+          <div class="item-list" id="organizationsListContainer" style="margin-bottom:24px;"></div>
+
+          <!-- Manajemen Penandatangan -->
+          <div class="card">
+            <h2 class="section-heading">Manajemen Penandatangan Berulang</h2>
+            <p class="page-subtitle" style="margin-bottom:12px;">Simpan data pejabat/pengurus penandatangan agar tinggal dipilih saat membuat surat.</p>
+            <div class="alert-box alert-warning" style="font-size:0.84rem;">
+              <strong>Keterangan Hukum Tanda Tangan:</strong> Gambar tanda tangan yang diunggah hanya berfungsi sebagai <strong>elemen visual</strong> pada dokumen draf dan <strong>tidak membuktikan keabsahan hukum</strong> maupun menggantikan tanda tangan basah/tanda tangan elektronik tersertifikasi.
+            </div>
+            <form id="signatoryForm">
+              <div class="form-grid">
+                <div class="form-group">
+                  <label class="form-label" for="sig_orgId">Organisasi Terkait</label>
+                  <select id="sig_orgId" class="form-control"></select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="sig_name">Nama Penandatangan<span class="required-mark">*</span></label>
+                  <input type="text" id="sig_name" class="form-control" placeholder="Nama lengkap beserta gelar jika ada" required>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="sig_title">Jabatan Penandatangan<span class="required-mark">*</span></label>
+                  <input type="text" id="sig_title" class="form-control" placeholder="Contoh: Ketua Umum / Sekretaris" required>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="sig_imageFile">Gambar Tanda Tangan (Opsional)</label>
+                  <input type="file" id="sig_imageFile" class="form-control" accept="image/png,image/jpeg,image/webp">
+                  <label style="display:flex;align-items:center;gap:6px;margin-top:6px;font-size:0.84rem;cursor:pointer;">
+                    <input type="checkbox" id="sig_useImage" checked> Sertakan gambar tanda tangan jika diunggah
+                  </label>
+                </div>
+              </div>
+              <button type="submit" class="btn btn-primary btn-sm">Simpan Penandatangan</button>
+            </form>
+            <div class="item-list" id="signatoriesListContainer" style="margin-top:16px;"></div>
+          </div>
+        </section>
+
+        <!-- 5. ARSIP DOKUMEN -->
+        <section id="view-arsip" class="view-section">
+          <div class="page-header">
+            <div>
+              <h1 class="page-title">Arsip & Riwayat Dokumen</h1>
+              <p class="page-subtitle">Kelola, cari, edit ulang, duplikasi, atau cetak kembali seluruh surat yang telah Anda simpan.</p>
+            </div>
+            <button type="button" class="btn btn-primary" onclick="KopyNavigation.navigateTo('buat-surat')">+ Buat Surat Baru</button>
+          </div>
+
+          <div class="card">
+            <div class="form-grid">
+              <div class="form-group">
+                <label class="form-label" for="archiveSearchInput">Cari Dokumen</label>
+                <input type="search" id="archiveSearchInput" class="form-control" placeholder="Cari judul, nomor surat, atau perihal..." oninput="KopyArchive.renderArchiveView()">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="archiveCatFilter">Filter Kategori</label>
+                <select id="archiveCatFilter" class="form-control" onchange="KopyArchive.renderArchiveView()">
+                  <option value="ALL">Semua Kategori</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="archiveOrgFilter">Filter Organisasi</label>
+                <select id="archiveOrgFilter" class="form-control" onchange="KopyArchive.renderArchiveView()">
+                  <option value="ALL">Semua Organisasi</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="archiveDateFilter">Filter Tanggal Simpan</label>
+                <input type="date" id="archiveDateFilter" class="form-control" onchange="KopyArchive.renderArchiveView()">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="archiveSortSelect">Urutkan</label>
+                <select id="archiveSortSelect" class="form-control" onchange="KopyArchive.renderArchiveView()">
+                  <option value="newest">Terbaru ke Terlama</option>
+                  <option value="oldest">Terlama ke Terbaru</option>
+                </select>
+              </div>
+              <div class="form-group" style="justify-content:flex-end;">
+                <label style="display:flex;align-items:center;gap:8px;min-height:44px;cursor:pointer;font-weight:600;font-size:0.9rem;">
+                  <input type="checkbox" id="archiveFavOnly" onchange="KopyArchive.renderArchiveView()">
+                  Tampilkan Dokumen Favorit Saja
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="item-list" id="archiveListContainer"></div>
+        </section>
+
+        <!-- 6. PEMBUAT KOP SURAT -->
+        <section id="view-kop-surat" class="view-section">
+          <div class="page-header">
+            <div>
+              <h1 class="page-title">Pembuat Kop Surat</h1>
+              <p class="page-subtitle">Rancang kop surat resmi organisasi Anda dengan tata letak logo, garis pembatas, dan preview langsung.</p>
+            </div>
+          </div>
+
+          <div class="card">
+            <h2 class="section-heading">Preview Langsung Kop Surat</h2>
+            <div style="background:#ffffff;border:1px solid var(--border-strong);border-radius:10px;padding:18px;overflow-x:auto;" id="letterheadLivePreview"></div>
+          </div>
+
+          <div class="card">
+            <h2 class="section-heading">Pengaturan Desain Kop Surat</h2>
+            <form id="letterheadForm">
+              <input type="hidden" id="lh_id">
+              <div class="form-grid">
+                <div class="form-group">
+                  <label class="form-label" for="lh_title">Nama Desain Kop<span class="required-mark">*</span></label>
+                  <input type="text" id="lh_title" class="form-control" placeholder="Contoh: Kop Utama KOPY / Kop Panitia Acara" required>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="lh_orgId">Ambil Data dari Profil Organisasi</label>
+                  <select id="lh_orgId" class="form-control"></select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="lh_subHeader">Baris Atas Kop (Opsional, misal Nama Induk/Kecamatan)</label>
+                  <input type="text" id="lh_subHeader" class="form-control" placeholder="Contoh: PEMERINTAH KABUPATEN TANGERANG / YAYASAN...">
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="lh_orgName">Nama Utama Organisasi di Kop<span class="required-mark">*</span></label>
+                  <input type="text" id="lh_orgName" class="form-control" placeholder="Contoh: KOSAMBI PEDULI YATIM (KOPY)" required>
+                </div>
+                <div class="form-group full-width">
+                  <label class="form-label" for="lh_address">Alamat Sekretariat pada Kop</label>
+                  <input type="text" id="lh_address" class="form-control" placeholder="Contoh: Sekretariat: Kosambi Barat, Kec. Kosambi, Kab. Tangerang">
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="lh_phone">Nomor Telepon / WA</label>
+                  <input type="text" id="lh_phone" class="form-control" placeholder="0812-xxxx-xxxx">
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="lh_email">Email</label>
+                  <input type="text" id="lh_email" class="form-control" placeholder="sekretariat@organisasi.id">
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="lh_website">Website</label>
+                  <input type="text" id="lh_website" class="form-control" placeholder="www.organisasi.id">
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="lh_logoFile">Upload / Ganti Logo Kop</label>
+                  <input type="file" id="lh_logoFile" class="form-control" accept="image/png,image/jpeg,image/webp">
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="lh_logoPosition">Tata Letak Logo</label>
+                  <select id="lh_logoPosition" class="form-control">
+                    <option value="left">Logo di Kiri, Identitas di Kanan</option>
+                    <option value="center">Logo di Tengah Atas, Identitas di Bawah</option>
+                    <option value="none">Identitas Organisasi Tanpa Logo</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="lh_logoSize">Ukuran Logo</label>
+                  <select id="lh_logoSize" class="form-control">
+                    <option value="small">Kecil (52px)</option>
+                    <option value="medium" selected>Sedang (72px)</option>
+                    <option value="large">Besar (92px)</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="lh_dividerStyle">Jenis Garis Pembatas Bawah Kop</label>
+                  <select id="lh_dividerStyle" class="form-control">
+                    <option value="thick-thin">Garis Tebal-Tipis Resmi</option>
+                    <option value="double">Garis Ganda (Double)</option>
+                    <option value="single">Garis Tunggal</option>
+                    <option value="none">Tanpa Garis</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="lh_textAlign">Perataan Teks Kop</label>
+                  <select id="lh_textAlign" class="form-control">
+                    <option value="center">Rata Tengah (Center)</option>
+                    <option value="left">Rata Kiri (Left)</option>
+                  </select>
+                </div>
+              </div>
+              <button type="submit" class="btn btn-primary">Simpan Desain Kop Surat</button>
+            </form>
+          </div>
+
+          <h2 class="section-heading">Daftar Desain Kop Surat Tersimpan</h2>
+          <div class="item-list" id="savedLetterheadsList"></div>
+        </section>
+
+        <!-- 7. PENGATURAN APLIKASI & BACKUP -->
+        <section id="view-pengaturan" class="view-section">
+          <div class="page-header">
+            <div>
+              <h1 class="page-title">Pengaturan & Cadangan Data</h1>
+              <p class="page-subtitle">Sesuaikan tampilan, format penomoran surat, jenis huruf A4, serta ekspor/impor data lokal.</p>
+            </div>
+          </div>
+
+          <form onsubmit="KopySettings.saveSettingsFromForm(event)">
+            <div class="card">
+              <h2 class="section-heading">Tampilan & Standar Dokumen A4</h2>
+              <div class="form-grid">
+                <div class="form-group">
+                  <label class="form-label" for="set_theme">Mode Tampilan Aplikasi</label>
+                  <select id="set_theme" class="form-control">
+                    <option value="light">Mode Terang (Krem & Hijau)</option>
+                    <option value="dark">Mode Gelap (Dark Mode)</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="set_defaultOrgId">Profil Organisasi Default</label>
+                  <select id="set_defaultOrgId" class="form-control"></select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="set_defaultLetterheadId">Kop Surat Default</label>
+                  <select id="set_defaultLetterheadId" class="form-control"></select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="set_dateFormat">Format Tanggal Surat</label>
+                  <select id="set_dateFormat" class="form-control">
+                    <option value="ID_LONG">17 November 2026 (Standar Indonesia)</option>
+                    <option value="DD_MM_YYYY">17/11/2026</option>
+                    <option value="DD_DASH_MM_YYYY">17-11-2026</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="set_docFont">Font Dokumen Resmi A4</label>
+                  <select id="set_docFont" class="form-control">
+                    <option value="times">Times New Roman (12pt - Standar Formal)</option>
+                    <option value="arial">Arial / Sans-Serif (11pt - Modern)</option>
+                    <option value="georgia">Georgia Serif (11.5pt)</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="set_docMargin">Margin Kertas A4</label>
+                  <select id="set_docMargin" class="form-control">
+                    <option value="standard">Standar Resmi (20mm)</option>
+                    <option value="compact">Rapat / Muat Banyak (15mm)</option>
+                    <option value="wide">Lebar (25mm)</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <h2 class="section-heading">Pengaturan Penomoran Surat Otomatis</h2>
+              <p class="form-help" style="margin-bottom:12px;">
+                Variabel pola yang tersedia: <code>{SEQ}</code> (Nomor urut), <code>{ORG}</code> (Kode organisasi), <code>{CODE}</code> (Kode jenis surat), <code>{ROMAN}</code> (Bulan Romawi), <code>{MONTH}</code> (Bulan angka), <code>{YEAR}</code> (Tahun).
+              </p>
+              <div class="form-grid">
+                <div class="form-group full-width">
+                  <label class="form-label" for="set_numberingPattern">Pola Format Nomor Surat</label>
+                  <input type="text" id="set_numberingPattern" class="form-control" value="{SEQ}/{ORG}/{CODE}/{ROMAN}/{YEAR}">
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="set_numberingDigits">Jumlah Digit Nomor Urut</label>
+                  <select id="set_numberingDigits" class="form-control">
+                    <option value="2">2 Digit (01, 02...)</option>
+                    <option value="3" selected>3 Digit (001, 002...)</option>
+                    <option value="4">4 Digit (0001, 0002...)</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="set_numberingReset">Aturan Reset Nomor Urut</label>
+                  <select id="set_numberingReset" class="form-control">
+                    <option value="yearly">Reset Setiap Tahun Baru</option>
+                    <option value="monthly">Reset Setiap Bulan Baru</option>
+                    <option value="continuous">Terus Berurutan (Tanpa Reset)</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="set_numberingPrefix">Awalan Tambahan / Prefix (Opsional)</label>
+                  <input type="text" id="set_numberingPrefix" class="form-control" placeholder="Contoh: No. ">
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="set_numberingSuffix">Akhiran Tambahan / Suffix (Opsional)</label>
+                  <input type="text" id="set_numberingSuffix" class="form-control" placeholder="Opsional">
+                </div>
+              </div>
+              <button type="submit" class="btn btn-primary">Simpan Semua Pengaturan</button>
+            </div>
+          </form>
+
+          <!-- Ekspor & Impor Backup JSON -->
+          <div class="card">
+            <h2 class="section-heading">Ekspor & Impor Cadangan Data (Backup JSON)</h2>
+            <p class="page-subtitle" style="margin-bottom:12px;">
+              Karena seluruh data tersimpan lokal di perangkat Anda, lakukan ekspor backup secara berkala agar data aman jika mengganti HP atau membersihkan data browser.
+            </p>
+            <div class="btn-group" style="margin-bottom:14px;">
+              <button type="button" class="btn btn-primary btn-sm" onclick="KopyExportImport.exportBackup('all')">Ekspor Seluruh Data (Lengkap)</button>
+              <button type="button" class="btn btn-soft btn-sm" onclick="KopyExportImport.exportBackup('organizations')">Ekspor Profil Organisasi & Kop</button>
+              <button type="button" class="btn btn-soft btn-sm" onclick="KopyExportImport.exportBackup('documents')">Ekspor Arsip Dokumen</button>
+              <button type="button" class="btn btn-soft btn-sm" onclick="KopyExportImport.exportBackup('customTemplates')">Ekspor Template Kustom</button>
+            </div>
+
+            <div class="form-group" style="margin-bottom:0;">
+              <label class="form-label" for="backupImportFileInput">Pulihkan Data dari File Backup (.json)</label>
+              <input type="file" id="backupImportFileInput" class="form-control" accept=".json,application/json" onchange="KopyExportImport.handleImportFileSelection(this.files[0]); this.value='';">
+              <span class="form-help">Sistem akan memvalidasi keutuhan file terlebih dahulu dan meminta konfirmasi (Gabungkan atau Timpa).</span>
+            </div>
+          </div>
+
+          <!-- Informasi Penyimpanan & Reset -->
+          <div class="card">
+            <h2 class="section-heading">Informasi Penyimpanan Lokal & Pemeliharaan</h2>
+            <div id="storageDiagnosticsBox" style="margin-bottom:14px;"></div>
+            <div class="btn-group">
+              <button type="button" class="btn btn-outline btn-sm" onclick="KopySettings.clearNumberingHistory()">Hapus Riwayat Penomoran</button>
+              <button type="button" class="btn btn-danger-outline btn-sm" onclick="KopySettings.factoryResetAllData()">Hapus Seluruh Data Lokal</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- 8. BANTUAN & PANDUAN PENGGUNA -->
+        <section id="view-bantuan" class="view-section">
+          <div class="page-header">
+            <div>
+              <h1 class="page-title">Pusat Bantuan & Panduan Pengguna</h1>
+              <p class="page-subtitle">Petunjuk lengkap penggunaan aplikasi KOPY SuratKu dengan bahasa yang sederhana dan mudah dipahami.</p>
+            </div>
+          </div>
+
+          <div class="alert-box alert-warning">
+            <strong>Keterangan & Batasan Hukum Penting:</strong><br>
+            1. <strong>KOPY SuratKu</strong> adalah alat bantu penyusunan draf surat dan dokumen administrasi secara mandiri.<br>
+            2. Aplikasi ini <strong>tidak menerbitkan dokumen resmi negara</strong> dan tidak otomatis menjadikan setiap surat sah secara hukum tanpa tanda tangan, stempel, atau verifikasi pejabat berwenang.<br>
+            3. Khusus surat keterangan kependudukan (seperti Domisili, SKU, SKTM, Pengantar Pindah), draf dari aplikasi harus diperiksa dan disahkan oleh Ketua RT/RW, Kelurahan/Desa, atau instansi terkait.<br>
+            4. Gambar tanda tangan yang ditambahkan pada aplikasi hanyalah elemen visual dan bukan tanda tangan elektronik tersertifikasi (BSrE/PSrE).
+          </div>
+
+          <div class="card">
+            <h2 class="section-heading">1. Cara Memilih Template Surat</h2>
+            <p>Buka menu <strong>Buat Surat</strong> atau <strong>Semua Template</strong>. Anda dapat mengetik kata kunci pada kolom pencarian (contoh: <em>"undangan rapat"</em>, <em>"permohonan donasi"</em>, atau <em>"tagihan"</em>) maupun memilih salah satu dari 6 kategori (A sampai F). Tekan tombol <strong>Gunakan Template</strong> untuk mulai mengisi formulir.</p>
+
+            <h2 class="section-heading">2. Cara Mengisi Formulir Otomatis</h2>
+            <p>Setiap jenis surat menampilkan kolom isian yang disesuaikan dengan kebutuhannya saja. Pilih <strong>Profil Organisasi</strong> di bagian atas formulir agar kop surat, kota, dan nama penandatangan terisi otomatis. Kolom bertanda bintang merah (<span class="required-mark">*</span>) wajib diisi sebelum melanjutkan.</p>
+
+            <h2 class="section-heading">3. Cara Mengedit Isi Surat pada Lembar A4</h2>
+            <p>Setelah menekan <strong>Lanjut ke Preview & Editor Surat</strong>, dokumen tampil dalam bentuk lembar kertas A4. Gunakan <strong>Panel Edit Dokumen</strong> di samping/atas untuk mengubah judul, nomor, tanggal, penerima, gaya bahasa, maupun menambah, menghapus, dan menggeser urutan paragraf.</p>
+
+            <h2 class="section-heading">4. Cara Menyimpan Identitas Organisasi</h2>
+            <p>Masuk ke menu <strong>Organisasi Saya</strong>. Anda dapat menyimpan banyak profil sekaligus (misalnya profil RT/RW, Karang Taruna, Yayasan KOPY, Sekolah, dan Usaha UMKM). Anda juga bisa mengunggah logo dari galeri HP dan mengatur profil mana yang aktif.</p>
+
+            <h2 class="section-heading">5. Cara Membuat & Mengatur Kop Surat</h2>
+            <p>Buka menu <strong>Kop Surat</strong>. Pilih tata letak logo (Logo Kiri, Logo Tengah, atau Tanpa Logo), atur ukuran logo dan jenis garis pembatas bawah kop, lalu lihat hasilnya secara langsung sebelum menekan <strong>Simpan Desain Kop Surat</strong>.</p>
+
+            <h2 class="section-heading">6. Cara Membuat Nomor Surat Otomatis</h2>
+            <p>Nomor surat dibuat otomatis sesuai pola organisasi (contoh: <code>001/KOPY/SOSIAL/XI/2026</code>). Anda dapat mengubah format pola, bulan Romawi, dan aturan reset tahunan/bulanan di menu <strong>Pengaturan</strong>, atau mengedit nomornya secara manual pada formulir. Jika nomor yang sama pernah dipakai pada organisasi tersebut, aplikasi akan memberikan peringatan.</p>
+
+            <h2 class="section-heading">7. Cara Memilih & Menyimpan Penandatangan</h2>
+            <p>Pada menu <strong>Organisasi Saya</strong> bagian bawah, simpan nama dan jabatan pengurus yang sering menandatangani surat. Saat membuat surat, cukup pilih nama penandatangan dari daftar dropdown.</p>
+
+            <h2 class="section-heading">8. Cara Menyimpan Dokumen ke Arsip</h2>
+            <p>Pada tahap Preview & Editor, tekan tombol <strong>Simpan ke Arsip</strong>. Dokumen akan tersimpan di menu <strong>Arsip Dokumen</strong> sehingga kapan saja dapat dibuka kembali, diduplikasi, ditandai favorit, atau diedit ulang.</p>
+
+            <h2 class="section-heading">9. Cara Mencetak Surat & Menyimpan sebagai PDF di HP Android</h2>
+            <ol style="padding-left:20px;line-height:1.7;">
+              <li>Pada halaman Editor atau Arsip, tekan tombol <strong>Cetak / Simpan PDF</strong>.</li>
+              <li>Dialog cetak browser akan terbuka dengan tampilan bersih kertas A4 tanpa tombol menu aplikasi.</li>
+              <li>Pada pilihan printer di bagian atas layar HP Android, pilih <strong>Simpan sebagai PDF (Save as PDF)</strong>.</li>
+              <li>Pastikan ukuran kertas diatur ke <strong>ISO A4</strong> dan skala <strong>100%</strong>, lalu tekan ikon unduh PDF untuk menyimpannya ke memori HP Anda.</li>
+            </ol>
+
+            <h2 class="section-heading">10. Cara Melakukan Backup & Mengembalikan Data</h2>
+            <p>Buka menu <strong>Pengaturan</strong> bagian <strong>Ekspor & Impor Cadangan Data</strong>. Tekan <strong>Ekspor Seluruh Data</strong> untuk mengunduh file <code>.json</code>. Untuk memulihkan data di perangkat baru, pilih file <code>.json</code> tersebut lalu pilih <strong>Gabungkan Data</strong> atau <strong>Timpa Data</strong>.</p>
+
+            <h2 class="section-heading">11. Cara Menggunakan Aplikasi Secara Offline</h2>
+            <p>Saat KOPY SuratKu dibuka melalui alamat web HTTPS (seperti <strong>GitHub Pages</strong>) atau <code>http://localhost</code>, Service Worker akan menyimpan seluruh file aplikasi secara otomatis ke perangkat Anda. Setelah itu, aplikasi tetap dapat dibuka, digunakan membuat surat, dan mencetak meskipun paket data/Wi-Fi dimatikan. <em>Catatan: Jika file <code>index.html</code> dibuka langsung lewat File Manager HP (alamat <code>file://</code>), browser Android membatasi fitur cache offline PWA, namun seluruh fitur utama tetap berjalan.</em></p>
+          </div>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- =======================================================================
+       MODALS (Mobile Drawer, Archive Preview, Custom Template, Import Backup)
+       ======================================================================= -->
+  <!-- Mobile More Drawer -->
+  <div class="modal-backdrop no-print" id="mobileMoreModal" onclick="if(event.target===this) KopyNavigation.closeMobileMoreDrawer()">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3>Menu Aplikasi Lainnya</h3>
+        <button type="button" class="btn btn-outline btn-sm" onclick="KopyNavigation.closeMobileMoreDrawer()">Tutup</button>
+      </div>
+      <div class="modal-body">
+        <div class="mobile-drawer-grid">
+          <button type="button" class="drawer-tile" onclick="KopyNavigation.navigateTo('organisasi')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+            Organisasi Saya
+          </button>
+          <button type="button" class="drawer-tile" onclick="KopyNavigation.navigateTo('kop-surat')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            Kop Surat
+          </button>
+          <button type="button" class="drawer-tile" onclick="KopyNavigation.navigateTo('pengaturan')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+            Pengaturan & Backup
+          </button>
+          <button type="button" class="drawer-tile" onclick="KopyNavigation.navigateTo('bantuan')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            Bantuan & Panduan
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Archive Preview Modal -->
+  <div class="modal-backdrop" id="archivePreviewModal" onclick="if(event.target===this) KopyArchive.closePreviewModal()">
+    <div class="modal-card modal-lg">
+      <div class="modal-header no-print">
+        <h3 id="archiveModalTitle">Preview Dokumen</h3>
+        <div class="btn-group">
+          <button type="button" class="btn btn-primary btn-sm" onclick="KopyArchive.printModalDocument()">Cetak / Simpan PDF</button>
+          <button type="button" class="btn btn-outline btn-sm" onclick="KopyArchive.closePreviewModal()">Tutup</button>
+        </div>
+      </div>
+      <div class="modal-body" id="archiveModalBody"></div>
+    </div>
+  </div>
+
+  <!-- Custom Template Builder Modal -->
+  <div class="modal-backdrop no-print" id="customTemplateModal" onclick="if(event.target===this) KopyApp.closeCustomTemplateModal()">
+    <div class="modal-card modal-lg">
+      <div class="modal-header">
+        <h3>Buat / Edit Template Surat Kustom</h3>
+        <button type="button" class="btn btn-outline btn-sm" onclick="KopyApp.closeCustomTemplateModal()">Tutup</button>
+      </div>
+      <form id="customTemplateForm" style="display:flex;flex-direction:column;overflow:hidden;">
+        <div class="modal-body">
+          <input type="hidden" id="ct_id">
+          <div class="form-grid">
+            <div class="form-group">
+              <label class="form-label" for="ct_name">Nama Template<span class="required-mark">*</span></label>
+              <input type="text" id="ct_name" class="form-control" placeholder="Contoh: Surat Undangan Pengajian Rutin" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="ct_category">Kategori</label>
+              <select id="ct_category" class="form-control">
+                <option value="A">A. Surat Umum dan Pribadi</option>
+                <option value="B">B. Organisasi dan Komunitas</option>
+                <option value="C">C. RT/RW dan Lingkungan</option>
+                <option value="D">D. Pendidikan dan Sekolah</option>
+                <option value="E">E. Yayasan dan Kegiatan Sosial</option>
+                <option value="F">F. Usaha dan UMKM</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="ct_code">Kode Surat Default</label>
+              <input type="text" id="ct_code" class="form-control" value="KST" placeholder="Contoh: UND / KST">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="ct_docLayout">Tata Letak Kepala Surat</label>
+              <select id="ct_docLayout" class="form-control">
+                <option value="surat_resmi">Surat Resmi (Nomor/Lampiran/Perihal + Kepada Yth.)</option>
+                <option value="surat_judul_tengah">Judul Tengah Kapital (Keterangan/Tugas/Pernyataan)</option>
+                <option value="surat_pribadi">Surat Pribadi / Permohonan Langsung</option>
+              </select>
+            </div>
+            <div class="form-group full-width">
+              <label class="form-label" for="ct_description">Deskripsi Kegunaan</label>
+              <input type="text" id="ct_description" class="form-control" placeholder="Penjelasan singkat fungsi template ini">
+            </div>
+          </div>
+
+          <div class="form-group" style="margin-bottom:8px;">
+            <label class="form-label">Sisipkan Variabel Otomatis (Klik untuk menambahkan ke isi surat):</label>
+            <div class="btn-group" style="gap:5px;">
+              <button type="button" class="btn btn-outline btn-sm" onclick="KopyApp.insertCustomVariable('{{perihal}}')">{{perihal}}</button>
+              <button type="button" class="btn btn-outline btn-sm" onclick="KopyApp.insertCustomVariable('{{nama_penerima}}')">{{nama_penerima}}</button>
+              <button type="button" class="btn btn-outline btn-sm" onclick="KopyApp.insertCustomVariable('{{jabatan_penerima}}')">{{jabatan_penerima}}</button>
+              <button type="button" class="btn btn-outline btn-sm" onclick="KopyApp.insertCustomVariable('{{isi_surat}}')">{{isi_surat}}</button>
+              <button type="button" class="btn btn-outline btn-sm" onclick="KopyApp.insertCustomVariable('{{tanggal_acara}}')">{{tanggal_acara}}</button>
+              <button type="button" class="btn btn-outline btn-sm" onclick="KopyApp.insertCustomVariable('{{tempat_acara}}')">{{tempat_acara}}</button>
+            </div>
+          </div>
+
+          <div class="form-group" style="margin-bottom:0;">
+            <label class="form-label" for="ct_bodyText">Isi Template Surat (Pisahkan antar paragraf dengan baris kosong)<span class="required-mark">*</span></label>
+            <textarea id="ct_bodyText" class="form-control" rows="8" required></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline" onclick="KopyApp.closeCustomTemplateModal()">Batal</button>
+          <button type="submit" class="btn btn-primary">Simpan Template Kustom</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Import Backup Confirmation Modal -->
+  <div class="modal-backdrop no-print" id="importConfirmModal" onclick="if(event.target===this) KopyExportImport.closeImportModal()">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3>Konfirmasi Pemulihan Data Backup</h3>
+        <button type="button" class="btn btn-outline btn-sm" onclick="KopyExportImport.closeImportModal()">Batal</button>
+      </div>
+      <div class="modal-body" id="importPreviewInfo"></div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline" onclick="KopyExportImport.closeImportModal()">Batal</button>
+        <button type="button" class="btn btn-soft" onclick="KopyExportImport.executeImport('merge')">Gabungkan Data (Merge)</button>
+        <button type="button" class="btn btn-danger" onclick="KopyExportImport.executeImport('overwrite')">Timpa Data (Overwrite)</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div class="toast-container no-print" id="toastContainer" aria-live="polite"></div>
+
+  <!-- =======================================================================
+       SCRIPTS (Urutan Terstruktur, Tanpa Ketergantungan Eksternal)
+       ======================================================================= -->
+  <script src="./js/storage.js"></script>
+  <script src="./js/numbering.js"></script>
+  <script src="./js/organization.js"></script>
+  <script src="./js/letterhead.js"></script>
+  <script src="./js/signatory.js"></script>
+  <script src="./js/templates.js"></script>
+  <script src="./js/form-generator.js"></script>
+  <script src="./js/document-editor.js"></script>
+  <script src="./js/archive.js"></script>
+  <script src="./js/printing.js"></script>
+  <script src="./js/export-import.js"></script>
+  <script src="./js/search.js"></script>
+  <script src="./js/settings.js"></script>
+  <script src="./js/navigation.js"></script>
+  <script src="./js/app.js"></script>
+</body>
+</html>

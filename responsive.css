@@ -1,0 +1,73 @@
+/* ==========================================================================
+   KOPY SuratKu — Responsive Stylesheet (responsive.css)
+   Adaptasi HP Android, Tablet, dan Komputer (Portrait & Landscape)
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+  .editor-workspace {
+    grid-template-columns: 1fr;
+  }
+
+  .editor-controls-panel {
+    position: static;
+    max-height: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .sidebar {
+    display: none;
+  }
+
+  .mobile-topbar {
+    display: flex;
+  }
+
+  .mobile-bottomnav {
+    display: block;
+  }
+
+  .main-content {
+    margin-left: 0;
+    padding: calc(var(--topbar-height) + 14px) 14px calc(var(--bottomnav-height) + 24px);
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .page-title {
+    font-size: 1.28rem;
+  }
+
+  .hero-admin-card {
+    padding: 18px;
+  }
+
+  .a4-viewport {
+    padding: 10px;
+    justify-content: flex-start;
+  }
+
+  /* Pada layar HP kecil, kertas A4 tetap 210mm agar layout identik cetak,
+     dapat digeser horizontal atau diperkecil dengan kontrol zoom */
+  .a4-sheet.mobile-fit {
+    width: 100%;
+    min-height: auto;
+    padding: 16px 14px;
+    font-size: 10.5pt;
+  }
+
+  .toast-container {
+    bottom: calc(var(--bottomnav-height) + 12px);
+    left: 14px;
+    right: 14px;
+  }
+}
+
+@media (min-width: 768px) {
+  .toast-container {
+    bottom: 24px;
+    right: 24px;
+  }
+}

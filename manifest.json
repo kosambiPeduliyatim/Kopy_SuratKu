@@ -1,0 +1,21 @@
+{
+  "name": "KOPY SuratKu — Pembuat Surat & Dokumen Otomatis",
+  "short_name": "KOPY SuratKu",
+  "description": "Buat Surat Lebih Mudah, Cepat, dan Praktis. Aplikasi pembuat surat administrasi gratis produk digital KOPY (Kosambi Peduli Yatim).",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#faf9f5",
+  "theme_color": "#15803d",
+  "lang": "id",
+  "categories": ["productivity", "utilities", "business"],
+  "icons": [
+    {
+      "src": "./assets/logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
